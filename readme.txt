@@ -61,7 +61,7 @@ answer must be looks like:
 
     git push origin main
 if not work, try 
-          git push origin
+          git push origin /  git push -u origin main
 if say:
 fatal: The current branch ain has no upstream branch.
 To push the current branch and set the remote as upstream, use
