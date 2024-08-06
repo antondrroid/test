@@ -70,6 +70,62 @@ To push the current branch and set the remote as upstream, use
 
     If your default branch is not named "main," replace "main" with the name of your default branch. For more information, see "About branches."
 
+
+if remote branch was changed and local has changed too, undepenentaly,
+for example, you create in remote file readme.md, but no pushed your loal files to remote yet,
+so you has 3 files on local server and one only on remote! 
+
+
+ use:
+
+PS D:\projects_old\test> git pull origin main
+From https://github.com/antondrroid/test
+ * branch            main       -> FETCH_HEAD
+fatal: refusing to merge unrelated histories  (not syncronized changes, and pull not work as usual)
+PS D:\projects_old\test> ls
+
+
+    Directory: D:\projects_old\test
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----          8/6/2024   4:13 PM                contract
+-a----          8/6/2024   3:21 PM           3235 readme.txt
+-a----          8/6/2024   1:31 PM              0 depth_of_commits.txt
+
+
+PS D:\projects_old\test> git pull origin main --allow-unrelated-histories
+From https://github.com/antondrroid/test
+ * branch            main       -> FETCH_HEAD
+Merge made by the 'ort' strategy.
+ README.md | 1 +
+ 1 file changed, 1 insertion(+)
+ create mode 100644 README.md
+PS D:\projects_old\test> ls
+
+
+after that , use 
+
+git push -u origin main 
+
+and README.MD will be pulled to local server. 
+
+
+    Directory: D:\projects_old\test
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----          8/6/2024   4:13 PM                contract
+-a----          8/6/2024   3:21 PM           3235 readme.txt
+-a----          8/6/2024   1:31 PM              0 depth_of_commits.txt
+-a----          8/6/2024   5:22 PM              8 README.md
+
+
+if somebody edit he project, while you are trip to  home, and after come, begin edit project, not pul 
+before, you will cannot nor pull, nor push.
+
 Further reading
 
     "Adding a file to a repository"
